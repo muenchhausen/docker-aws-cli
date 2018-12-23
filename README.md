@@ -1,6 +1,8 @@
-[![Build Status](https://travis-ci.com/aserour/docker-aws-cli.svg?branch=master)](https://travis-ci.com/aserour/docker-aws-cli) [![hub](https://img.shields.io/docker/pulls/asorour/docker-aws-cli.svg)](https://hub.docker.com/r/asorour/docker-aws-cli/)
-## Builder docker image
+[![Build Status](https://travis-ci.com/muenchhausen/docker-aws-cli.svg?branch=master)](https://travis-ci.com/muenchhausen/docker-aws-cli) [![hub](https://img.shields.io/docker/pulls/muenchhausen/docker-aws-cli.svg)](https://hub.docker.com/r/muenchhausen/docker-aws-cli/)
 
+This repo is a fork of https://github.com/aserour/docker-aws-cli. All changes will be merged back to the initial repository if possible.
+
+## Builder docker image 
 
 
 An Alpine based docker image contains a good combination of commenly used tools to build, package as docker image, login and push to AWS ECR, AWS authentication and all Kuberentes staff.
