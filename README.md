@@ -51,3 +51,7 @@ docker:
     script:
         - echo 'Your build scripts goes here and you can use all of the above toolset'
 ```
+
+## Credits
+
+Ahmed Sorour, https://github.com/aserour
