@@ -20,7 +20,7 @@ RUN apk add --no-cache python3 && \
 
 
 RUN apk --no-cache update && \
-    apk --no-cache add curl jq make bash ca-certificates groff less && \
+    apk --no-cache add curl jq make bash ca-certificates groff less gettext && \
     pip3 install --upgrade awscli urllib3 && \
     # pip3 --no-cache-dir install awscli==${AWS_CLI_VERSION} docker-compose wget && \
     rm -rf /var/cache/apk/*
