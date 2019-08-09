@@ -8,14 +8,14 @@ language: generic
 before_install:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - export REPO=muenchhausen/docker-aws-cli
-  - export TAG1=$(if [[ $TRAVIS_PULL_REQUEST == “false” ]] && [[ "$TRAVIS_BRANCH" == "master" ]]; then echo "latest"; else echo "$TRAVIS_BRANCH" ; fi)
+  - export TAG1=$(if [[ "$TRAVIS_BRANCH" == "master" ]]; then echo "latest"; else echo "$TRAVIS_BRANCH" ; fi)
   - export TAG2=$(grep 'LABEL version=' Dockerfile | grep -Po '[.\d]+')
   
 script:
   - echo "using tag $TAG1"
   - docker build -f Dockerfile -t $REPO:$TAG1 .
   - |
-    if [[ $TRAVIS_PULL_REQUEST == “false” ]] && [[ "$TRAVIS_BRANCH" == "master" ]]; then
+    if [[ "$TRAVIS_BRANCH" == "master" ]]; then
       echo "using additional tag $TAG2"
       docker tag $REPO:$TAG1 $REPO:$TAG2
     fi
