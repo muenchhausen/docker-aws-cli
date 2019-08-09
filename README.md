@@ -14,7 +14,6 @@ The image is mainly used as a builder images while creating CICD pipelines.
 |Tool                   |Description                                                                               |
 |-----------------------|------------------------------------------------------------------------------------------|
 |Docker Engine          |Docker image containing docker engine to offer Docker inside Docker (DinD)                |
-|docker-compose         |Docker Compose                                                                            | 
 |AWS CLI                |AWS commandline tools for managing simple infrastructure tasks                            |
 |Python                 |Usefull scripting language and also a common rerequisite for many other tools             |
 |Pip                    |Python package manager used to install many libraries and other tools i.e. aws-cli        |

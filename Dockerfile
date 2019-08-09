@@ -1,13 +1,15 @@
 FROM docker
 
 LABEL tools="docker-image, gitlab-aws, aws, helm, helm-charts, docker, gitlab, gitlab-ci, kubectl, s3, aws-iam-authenticator, ecr, bash, envsubst, alpine, curl, python3, pip3, git"
-LABEL version="2.0.0"
+LABEL version="3.0.0"
 LABEL description="An Alpine based docker image contains a good combination of commenly used tools\
  to build, package as docker image, login and push to AWS ECR, AWS authentication and all Kuberentes staff. \
  tools included: Docker, AWS-CLI, Kubectl, Helm, Curl, Python, Envsubst, Python, Pip, Git, Bash, AWS-IAM-Auth."
 LABEL maintainer="eng.ahmed.srour@gmail.com"
 
 ENV AWS_CLI_VERSION 1.16.214
+ENV AWS_IAM_AUTHENTICATOR_VERSION 1.13.7
+ENV AWS_IAM_AUTHENTICATOR_DATE 2019-06-11
 ENV KUBECTL_VERSION 1.12.7
 ENV KUBECTL_DATE 2019-03-27
 ENV HELM_VERSION 2.12.3
@@ -15,10 +17,9 @@ ENV TERRAFORM_VERSION 0.11.14
 
 # Install required packages
 RUN apk --no-cache update && \
-    apk --no-cache add git curl jq make bash ca-certificates groff less gettext \
-        python3 \
+    apk --no-cache add git curl jq make bash ca-certificates groff less gettext python3
         # additionally required by docker-compose:
-        python3-dev libffi-dev openssl-dev gcc libc-dev make
+        # python3-dev libffi-dev openssl-dev gcc libc-dev make
 
 RUN python3 -m ensurepip && \
     rm -r /usr/lib/python*/ensurepip && \
@@ -28,11 +29,12 @@ RUN python3 -m ensurepip && \
     rm -r /root/.cache
 
 # Install aws-cli, docker-compose
-RUN pip3 --no-cache-dir install awscli==${AWS_CLI_VERSION} docker-compose
+RUN pip3 --no-cache-dir install awscli==${AWS_CLI_VERSION} 
+# docker-compose
 
 # Install aws-iam-authenticator
-ADD https://amazon-eks.s3-us-west-2.amazonaws.com/1.11.5/2018-12-06/bin/linux/amd64/aws-iam-authenticator /usr/local/bin/aws-iam-authenticator
-RUN echo "a46c66eb14ad08204f2f588b32dc50b10e9a8a0cc48ddf0966596d3c07abe059  /usr/local/bin/aws-iam-authenticator" | sha256sum -c -
+ADD https://amazon-eks.s3-us-west-2.amazonaws.com/${AWS_IAM_AUTHENTICATOR_VERSION}/${AWS_IAM_AUTHENTICATOR_DATE}/bin/linux/amd64/aws-iam-authenticator /usr/local/bin/aws-iam-authenticator
+RUN echo "cc35059999bad461d463141132a0e81906da6c23953ccdac59629bb532c49c83  /usr/local/bin/aws-iam-authenticator" | sha256sum -c -
 RUN chmod +x /usr/local/bin/aws-iam-authenticator
 
 # Get the kubectl binary.
