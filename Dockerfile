@@ -1,4 +1,4 @@
-FROM docker:19.0.3
+FROM docker:19.03.11
 
 LABEL version="4.2.0"
 
