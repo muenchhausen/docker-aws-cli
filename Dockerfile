@@ -1,4 +1,4 @@
-FROM docker
+FROM docker:19.03.11
 
 LABEL version="4.2.0"
 
@@ -13,7 +13,7 @@ ENV TERRAFORM_VERSION 0.12.15
 
 # Install required packages
 RUN apk --no-cache update && \
-    apk --no-cache add git curl jq make bash ca-certificates groff less gettext python3 py-pip python-dev libffi-dev openssl-dev gcc libc-dev bash git openssh openssh-client
+    apk --no-cache add git curl jq make bash ca-certificates groff less gettext python3 py-pip python3-dev libffi-dev openssl-dev gcc libc-dev bash git openssh openssh-client
 
 # Install docker-compose
 RUN pip install docker-compose
